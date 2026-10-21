@@ -1,0 +1,2211 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Gym Chuadanga | Gym, Coaches and Supplement Store</title>
+    <meta name="description" content="Power Gym in Boro Bazar, Chuadanga: strength and cardio training, expert coaches, a women's session, fitness calculators and a supplement store. Open Saturday to Thursday, 6 AM to 11 PM.">
+    <meta name="theme-color" content="#080808">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Power Gym Chuadanga">
+    <meta property="og:description" content="Train with expert coaches in Boro Bazar, Chuadanga. Women's session, supplement store and fitness tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23FF2A00'/%3E%3Cpath d='M22 50h56M30 34v32M70 34v32M38 28v44M62 28v44' stroke='%23fff' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"HealthClub","name":"Power Gym Chuadanga","telephone":"+8801707248891",
+     "address":{"@type":"PostalAddress","streetAddress":"Boro Bazar, Chuadanga Sadar","addressLocality":"Chuadanga","addressRegion":"Khulna Division","addressCountry":"BD"},
+     "geo":{"@type":"GeoCoordinates","latitude":23.6438,"longitude":88.8556},
+     "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"],"opens":"06:00","closes":"23:00"}]}
+    </script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Oswald (Display) & Montserrat (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet JS Map CSS & Script -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#080808',
+                            dark: '#111111',
+                            card: '#161616',
+                            red: '#FF2A00',
+                            redGlow: 'rgba(255, 42, 0, 0.4)',
+                            orange: '#FF6B00',
+                            gold: '#FFD700',
+                            gray: '#9E9E9E'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Oswald"', 'sans-serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'neon-gradient': 'linear-gradient(135deg, #FF2A00 0%, #FF5500 100%)',
+                        'gold-gradient': 'linear-gradient(135deg, #FFD700 0%, #FF8C00 100%)',
+                        'dark-radial': 'radial-gradient(circle at center, rgba(255, 42, 0, 0.15) 0%, rgba(8, 8, 8, 1) 80%)',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 30px rgba(255, 42, 0, 0.5)',
+                        'neon-lg': '0 0 50px rgba(255, 42, 0, 0.7)',
+                        'neon-sm': '0 0 15px rgba(255, 42, 0, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF2A00; }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 25px rgba(255, 42, 0, 0.7);
+        }
+
+        .border-glow {
+            transition: all 0.3s ease;
+        }
+        .border-glow:hover {
+            border-color: #FF2A00;
+            box-shadow: 0 0 25px rgba(255, 42, 0, 0.3);
+        }
+
+        /* Header Active Link Underline Effect */
+        .nav-link:hover .nav-line {
+            width: 100%;
+        }
+
+        /* Glassmorphism Header Dynamic Scroll State */
+        .header-scrolled {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+            padding-top: 0.85rem !important;
+            padding-bottom: 0.85rem !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Hamburger Morph Icons */
+        .burger-active #burger-bar-1 {
+            transform: rotate(45deg) translate(3px, 2px);
+            background-color: #FF2A00;
+        }
+        .burger-active #burger-bar-2 {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        .burger-active #burger-bar-3 {
+            transform: rotate(-45deg) translate(3px, -2px);
+            background-color: #FF2A00;
+        }
+
+        /* Mobile Menu Active State */
+        #mobile-menu.menu-open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Leaflet Map Dark Theme Overrides */
+        .leaflet-tile {
+            filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+        }
+        .leaflet-container {
+            background: #080808 !important;
+            border-radius: 1rem;
+        }
+
+        /* Toast Popup Animation */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .toast-animate {
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* ===== 2X PRO VISUAL SYSTEM ===== */
+        :root{
+            --pro-red:#ff2a00;
+            --pro-orange:#ff6b00;
+            --pro-line:rgba(255,255,255,.09);
+            --pro-glass:rgba(14,14,14,.68);
+        }
+        html{scroll-behavior:smooth}
+        body{
+            background:
+                radial-gradient(circle at 15% 10%, rgba(255,42,0,.055), transparent 28%),
+                radial-gradient(circle at 85% 30%, rgba(255,107,0,.035), transparent 26%),
+                #080808;
+        }
+        body::before{
+            content:"";
+            position:fixed; inset:0; z-index:70; pointer-events:none; opacity:.035;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+        }
+        ::selection{background:#ff2a00;color:#fff}
+        .pro-grid{
+            background-image:
+              linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+              linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+            background-size:44px 44px;
+            mask-image:linear-gradient(to bottom,black,transparent 90%);
+        }
+        .pro-orb{
+            position:absolute;width:420px;height:420px;border-radius:999px;
+            background:radial-gradient(circle,rgba(255,42,0,.16),transparent 68%);
+            filter:blur(12px);pointer-events:none;animation:proFloat 9s ease-in-out infinite;
+        }
+        @keyframes proFloat{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(25px,-18px,0) scale(1.08)}}
+        .pro-kicker{letter-spacing:.24em}
+        .pro-title{letter-spacing:-.045em;text-wrap:balance}
+        .pro-card{
+            position:relative; overflow:hidden;
+            background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+            border:1px solid rgba(255,255,255,.08);
+            box-shadow:0 20px 70px rgba(0,0,0,.28);
+            transition:transform .45s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s,background .35s;
+        }
+        .pro-card::before{
+            content:"";position:absolute;inset:-1px;pointer-events:none;
+            background:radial-gradient(500px circle at var(--mx,50%) var(--my,0%),rgba(255,42,0,.16),transparent 42%);
+            opacity:0;transition:opacity .35s;
+        }
+        .pro-card:hover{transform:translateY(-7px);border-color:rgba(255,42,0,.32);box-shadow:0 28px 90px rgba(255,42,0,.10)}
+        .pro-card:hover::before{opacity:1}
+        .pro-card>*{position:relative;z-index:1}
+        .pro-btn{position:relative;overflow:hidden;isolation:isolate}
+        .pro-btn::after{
+            content:"";position:absolute;top:-120%;left:-35%;width:25%;height:340%;
+            background:rgba(255,255,255,.28);transform:rotate(22deg);transition:left .7s ease;z-index:-1;
+        }
+        .pro-btn:hover::after{left:125%}
+        .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+        .reveal.is-visible{opacity:1;transform:none}
+        .reveal-left{opacity:0;transform:translateX(-38px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+        .reveal-left.is-visible{opacity:1;transform:none}
+        .reveal-right{opacity:0;transform:translateX(38px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+        .reveal-right.is-visible{opacity:1;transform:none}
+        .hero-image{
+            position:absolute;inset:0;pointer-events:none;
+            background:
+              linear-gradient(90deg,#080808 4%,rgba(8,8,8,.76) 42%,rgba(8,8,8,.55) 70%,#080808 100%),
+              linear-gradient(0deg,#080808 0%,transparent 48%,rgba(8,8,8,.92) 100%),
+              url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=85&w=2200&auto=format&fit=crop");
+            background-position:center;background-size:cover;
+            filter:saturate(.72) contrast(1.08);
+            opacity:.34;
+            transform:scale(1.03);
+        }
+        .hero-scan{
+            position:absolute;left:0;right:0;top:22%;height:1px;
+            background:linear-gradient(90deg,transparent,rgba(255,42,0,.55),transparent);
+            box-shadow:0 0 24px rgba(255,42,0,.45);opacity:.45;animation:scan 6s linear infinite;
+        }
+        @keyframes scan{0%{transform:translateY(-180px);opacity:0}20%{opacity:.55}80%{opacity:.35}100%{transform:translateY(520px);opacity:0}}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,42,0,.45),rgba(255,255,255,.06),transparent)}
+        .pro-number{font-variant-numeric:tabular-nums}
+        .price-highlight{filter:drop-shadow(0 0 20px rgba(255,42,0,.16))}
+        .floating-ui{animation:floatUI 4s ease-in-out infinite}
+        @keyframes floatUI{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+        #back-to-top{
+            opacity:0;visibility:hidden;transform:translateY(12px);
+            transition:all .3s ease;
+        }
+        #back-to-top.show{opacity:1;visibility:visible;transform:none}
+        #cursor-glow{
+            position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:1;
+            background:radial-gradient(circle,rgba(255,42,0,.075),transparent 68%);
+            transform:translate(-50%,-50%);opacity:0;transition:opacity .25s;
+        }
+        @media (pointer:fine){#cursor-glow{opacity:1}}
+        @media (max-width:767px){
+            .hero-image{opacity:.24;background-position:60% center}
+            .pro-grid{background-size:30px 30px}
+        }
+        @media (prefers-reduced-motion:reduce){
+            *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+            .reveal,.reveal-left,.reveal-right{opacity:1;transform:none}
+        }
+    
+        /* Anime Power Visual */
+        .hero-character {
+            position: absolute;
+            right: clamp(1rem, 5vw, 5rem);
+            top: 50%;
+            transform: translateY(-44%);
+            width: clamp(150px, 17vw, 245px);
+            aspect-ratio: 1;
+            z-index: 5;
+            border-radius: 2rem;
+            padding: 3px;
+            background: linear-gradient(135deg, rgba(255,45,45,.9), rgba(255,120,30,.35), rgba(255,45,45,.05));
+            box-shadow: 0 0 35px rgba(255,45,45,.2), 0 0 90px rgba(255,75,25,.08);
+            animation: characterFloat 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .hero-character::before {
+            content: "";
+            position: absolute;
+            inset: -18px;
+            border: 1px solid rgba(255,55,55,.16);
+            border-radius: 2.4rem;
+            transform: rotate(6deg);
+        }
+        .hero-character img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(2rem - 3px);
+            filter: saturate(.9) contrast(1.05);
+        }
+        .hero-character-label {
+            position: absolute;
+            left: 50%;
+            bottom: -13px;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            padding: .45rem .7rem;
+            border-radius: 999px;
+            background: rgba(5,5,8,.88);
+            border: 1px solid rgba(255,55,55,.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,.35);
+            color: #fff;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+        }
+        @keyframes characterFloat {
+            0%, 100% { transform: translateY(-44%) rotate(-1deg); }
+            50% { transform: translateY(calc(-44% - 10px)) rotate(1deg); }
+        }
+        @media (max-width: 1100px) {
+            .hero-character {
+                right: 1rem;
+                width: 135px;
+                opacity: .72;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-character {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none !important;
+                width: 115px;
+                margin: 0 auto 22px;
+                opacity: 1;
+                order: -1;
+                animation: characterFloatMobile 5s ease-in-out infinite;
+            }
+            .hero-character::before { inset: -10px; }
+            .hero-character-label { bottom: -12px; }
+            @keyframes characterFloatMobile {
+                0%, 100% { transform: translateY(0) rotate(-1deg); }
+                50% { transform: translateY(-7px) rotate(1deg); }
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-character { animation: none; }
+        }
+
+        /* Mini anime emblem logo */
+        header a > div:first-child img {
+            filter: contrast(1.08) brightness(0.92);
+        }
+
+        /* Product Store Filter Animations */
+        .product-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-card.hidden-product {
+            display: none !important;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+    
+        /* ===== 3D BACKGROUND + PRO UPGRADE ===== */
+        #bg3d{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+        section.bg-brand-black,footer.bg-brand-black{background-color:rgba(8,8,8,.30)!important}
+        section.bg-brand-dark{background-color:rgba(14,14,14,.38)!important}
+        #hero{background:transparent!important}
+        #hero .hero-image{opacity:.14}
+        #hero>.bg-gradient-to-t{opacity:.25}
+        #sp{position:fixed;top:0;left:0;height:3px;width:100%;z-index:90;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#ff2a00,#ff9a00);box-shadow:0 0 14px #ff2a00;pointer-events:none}
+        #cg{position:fixed;top:0;left:0;width:500px;height:500px;z-index:1;pointer-events:none;border-radius:50%;background:radial-gradient(circle,rgba(255,60,10,.10),transparent 65%);mix-blend-mode:screen;will-change:transform;transform:translate3d(-999px,-999px,0)}
+        @media (hover:none){#cg{display:none}}
+    </style>
+</head>
+<body class="bg-brand-black text-white font-sans antialiased overflow-x-hidden selection:bg-brand-red selection:text-white">
+    <canvas id="bg3d" aria-hidden="true"></canvas>
+    <div id="sp" aria-hidden="true"></div>
+    <div id="cg" aria-hidden="true"></div>
+
+
+    <!-- Scroll Progress Indicator Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-neon-gradient z-[60] w-0 transition-all duration-75"></div>
+
+    <!-- Header Navigation -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4 px-4 md:px-8 border-b border-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group relative z-50">
+                <div class="w-10 h-10 rounded-xl overflow-hidden border border-brand-red/50 bg-black shadow-neon group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <img src="425f4ab4d02de6bfa223f5afeb966d93.gif" alt="Power Gym emblem" class="w-full h-full object-cover object-center">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display text-2xl md:text-3xl font-black tracking-wider text-white uppercase leading-none group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-neon-gradient transition-all duration-300">
+                        POWER <span class="text-brand-red">GYM</span>
+                    </span>
+                    <span class="text-[9px] font-bold text-gray-400 tracking-widest uppercase group-hover:text-gray-200 transition-colors">Chuadanga Center</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-7 text-xs font-extrabold tracking-widest text-gray-300 uppercase">
+                <a href="#hero" class="nav-link relative py-1 hover:text-white transition-colors">
+                    <span>Home</span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all duration-300"></span>
+                </a>
+                <a href="#calculator" class="nav-link relative py-1 hover:text-white transition-colors flex items-center gap-1.5">
+                    <span>Fitness Hub</span>
+                    <span class="px-1.5 py-0.5 rounded text-[8px] bg-brand-red/20 text-brand-red font-black border border-brand-red/30">TOOLS</span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all duration-300"></span>
+                </a>
+                <a href="#products" class="nav-link relative py-1 hover:text-white transition-colors flex items-center gap-1.5 text-brand-orange">
+                    <span>Store</span>
+                    <span class="px-1.5 py-0.5 rounded text-[8px] bg-brand-orange/20 text-brand-orange font-black border border-brand-orange/30">SHOP</span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange transition-all duration-300"></span>
+                </a>
+                <a href="#schedule" class="nav-link relative py-1 hover:text-white transition-colors">
+                    <span>Schedule</span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all duration-300"></span>
+                </a>
+                <a href="#trainers" class="nav-link relative py-1 hover:text-white transition-colors">
+                    <span>Trainers</span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all duration-300"></span>
+                </a>
+                <a href="#gallery" class="nav-link relative py-1 hover:text-white transition-colors">
+                    <span>Gallery</span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all duration-300"></span>
+                </a>
+                <a href="#pricing" class="nav-link relative py-1 text-brand-red hover:text-brand-orange transition-colors flex items-center gap-1.5 font-black">
+                    <span>Pricing</span>
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-red"></span>
+                    </span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-orange transition-all duration-300"></span>
+                </a>
+                <a href="#contact" class="nav-link relative py-1 hover:text-white transition-colors">
+                    <span>Location</span>
+                    <span class="nav-line absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all duration-300"></span>
+                </a>
+            </nav>
+
+            <!-- Gym Live Status Badge & Primary CTA -->
+            <div class="hidden sm:flex items-center gap-4 relative z-50">
+                <div class="hidden xl:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-black/80 border border-gray-800 text-[11px] font-bold backdrop-blur-md">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                    </span>
+                    <span class="text-gray-300 uppercase">OPEN NOW</span>
+                    <span class="text-gray-600">•</span>
+                    <span class="text-brand-orange">Capacity: <span id="live-capacity">64%</span></span>
+                </div>
+
+                <a href="#pricing" class="relative group overflow-hidden rounded-xl p-[1px] focus:outline-none">
+                    <span class="absolute inset-0 bg-neon-gradient rounded-xl transition-all duration-300 group-hover:opacity-90 group-hover:shadow-neon"></span>
+                    <span class="relative px-5 py-2.5 rounded-xl bg-brand-black text-white font-black text-xs tracking-widest uppercase flex items-center gap-2 group-hover:bg-transparent transition-colors">
+                        <span>JOIN NOW</span>
+                        <i data-lucide="zap" class="w-3.5 h-3.5 text-brand-red group-hover:text-white transition-colors fill-current"></i>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Animated Mobile Hamburger Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none p-2.5 glass-panel rounded-xl relative z-50 border border-gray-800 hover:border-brand-red/50 transition-colors" aria-label="Toggle Navigation">
+                <div class="w-6 h-5 flex flex-col justify-between items-center relative overflow-hidden">
+                    <span id="burger-bar-1" class="w-full h-0.5 bg-white rounded-full transition-all duration-300 transform origin-left"></span>
+                    <span id="burger-bar-2" class="w-full h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                    <span id="burger-bar-3" class="w-full h-0.5 bg-white rounded-full transition-all duration-300 transform origin-left"></span>
+                </div>
+            </button>
+        </div>
+
+        <!-- Fullscreen Animated Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-brand-black/95 backdrop-blur-2xl z-40 lg:hidden flex flex-col justify-center items-center px-6 transition-all duration-500 opacity-0 pointer-events-none translate-y-[-100%]">
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-dark/90 border border-gray-800 text-xs font-bold mb-8">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-gray-300 uppercase">OPEN NOW • Capacity 64%</span>
+            </div>
+
+            <nav class="flex flex-col items-center gap-5 text-center">
+                <a href="#hero" class="mobile-nav-item font-display text-3xl font-black uppercase text-white hover:text-brand-red transition-colors">Home</a>
+                <a href="#calculator" class="mobile-nav-item font-display text-3xl font-black uppercase text-white hover:text-brand-red transition-colors flex items-center gap-2">
+                    <span>Fitness Hub</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] bg-brand-red text-white font-sans font-extrabold">TOOLS</span>
+                </a>
+                <a href="#products" class="mobile-nav-item font-display text-3xl font-black uppercase text-brand-orange hover:text-brand-red transition-colors flex items-center gap-2">
+                    <span>Supplements Store</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] bg-brand-orange text-white font-sans font-extrabold">SHOP</span>
+                </a>
+                <a href="#schedule" class="mobile-nav-item font-display text-3xl font-black uppercase text-white hover:text-brand-red transition-colors">Schedule</a>
+                <a href="#trainers" class="mobile-nav-item font-display text-3xl font-black uppercase text-white hover:text-brand-red transition-colors">Pro Trainers</a>
+                <a href="#gallery" class="mobile-nav-item font-display text-3xl font-black uppercase text-white hover:text-brand-red transition-colors">Gallery</a>
+                <a href="#pricing" class="mobile-nav-item font-display text-3xl font-black uppercase text-brand-red hover:text-brand-orange transition-colors">Pricing & Passes</a>
+                <a href="#contact" class="mobile-nav-item font-display text-3xl font-black uppercase text-white hover:text-brand-red transition-colors">Location</a>
+            </nav>
+
+            <a href="#pricing" class="mobile-nav-item w-full max-w-xs mt-8 bg-neon-gradient text-white py-4 rounded-xl font-black tracking-widest uppercase text-center text-xs shadow-neon">
+                JOIN NOW - GET STARTED
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-4 md:px-8 overflow-hidden bg-dark-radial">
+        <div class="hero-image"></div>
+        <div class="pro-grid absolute inset-0 z-0 pointer-events-none"></div>
+        <div class="pro-orb -left-48 top-24 z-0"></div>
+        <div class="pro-orb -right-56 bottom-0 z-0" style="animation-delay:-4s;opacity:.55"></div>
+        <div class="hero-scan z-0"></div>
+        <canvas id="hero-particles" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/90 z-0 pointer-events-none"></div>
+
+        <div id="live-toast-container" class="fixed bottom-6 left-6 z-40 max-w-xs pointer-events-none"></div>
+
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+            <div class="hero-anim inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border-brand-red/40 mb-6 shadow-neon-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                <span class="text-xs font-extrabold tracking-widest text-gray-200 uppercase">PREMIER FITNESS CENTER • CHUADANGA</span>
+            </div>
+
+            <div class="hero-anim flex items-center gap-3 mb-5 text-[9px] sm:text-[10px] font-black tracking-[.28em] text-gray-500 uppercase">
+                <span class="w-10 h-px bg-brand-red"></span>
+                <span>BUILT FOR PEOPLE WHO TRAIN SERIOUS</span>
+                <span class="w-10 h-px bg-brand-red"></span>
+            </div>
+            <h1 class="hero-anim pro-title font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none text-white mb-6 uppercase">
+                FORGE YOUR <br /><span class="text-transparent bg-clip-text bg-neon-gradient text-glow">ULTIMATE SELF</span>
+            </h1>
+
+            <p class="hero-anim max-w-2xl text-gray-300 text-sm sm:text-base md:text-lg font-normal leading-relaxed mb-10">
+                A high-performance training hub designed to sculpt lean strength, blast body fat, and elevate mental endurance. Open 6 days a week with certified expert coaching.
+            </p>
+
+            <div class="hero-anim flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16">
+                <a href="#pricing" class="pro-btn bg-neon-gradient text-white px-8 py-4 rounded-xl font-black text-xs tracking-widest hover:shadow-neon transition-all hover:scale-105 flex items-center justify-center gap-2 group uppercase">
+                    <span>GET STARTED TODAY</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <button onclick="openTourModal()" class="glass-panel text-white hover:border-brand-red/50 px-8 py-4 rounded-xl font-bold text-xs tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2 uppercase">
+                    <i data-lucide="play-circle" class="w-4 h-4 text-brand-red"></i>
+                    <span>VIRTUAL TOUR</span>
+                </button>
+            </div>
+
+            <div class="hero-anim w-full max-w-4xl mb-5">
+                <div class="glass-panel rounded-2xl px-4 py-3 flex flex-wrap items-center justify-center sm:justify-between gap-3 border border-white/10">
+                    <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-300">
+                        <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_14px_rgba(34,197,94,.7)]"></span>
+                        Live floor status
+                    </div>
+                    <div class="flex items-center gap-5 text-[10px] font-bold uppercase tracking-widest">
+                        <span class="text-gray-500">Members training <b class="text-white">64%</b></span>
+                        <span class="hidden sm:inline text-gray-700">|</span>
+                        <span class="text-brand-orange">Saturday — Thursday</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-anim grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl text-left">
+                <div class="glass-panel pro-card p-4 rounded-xl flex items-center gap-3 border-glow">
+                    <div class="p-2.5 rounded-lg bg-brand-red/10 text-brand-red shrink-0"><i data-lucide="dumbbell" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="text-[10px] text-gray-400 font-extrabold uppercase tracking-widest">Gear</div>
+                        <div class="text-xs font-bold text-white">Heavy Power Racks</div>
+                    </div>
+                </div>
+                <div class="glass-panel pro-card p-4 rounded-xl flex items-center gap-3 border-glow">
+                    <div class="p-2.5 rounded-lg bg-brand-red/10 text-brand-red shrink-0"><i data-lucide="clock" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="text-[10px] text-gray-400 font-extrabold uppercase tracking-widest">Timings</div>
+                        <div class="text-xs font-bold text-white">6:00 AM – 11:00 PM</div>
+                    </div>
+                </div>
+                <div class="glass-panel pro-card p-4 rounded-xl flex items-center gap-3 border-glow">
+                    <div class="p-2.5 rounded-lg bg-brand-red/10 text-brand-red shrink-0"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="text-[10px] text-gray-400 font-extrabold uppercase tracking-widest">Coaching</div>
+                        <div class="text-xs font-bold text-white">2 Expert Trainers</div>
+                    </div>
+                </div>
+                <div class="glass-panel pro-card p-4 rounded-xl flex items-center gap-3 border-glow">
+                    <div class="p-2.5 rounded-lg bg-brand-red/10 text-brand-red shrink-0"><i data-lucide="users" class="w-5 h-5"></i></div>
+                    <div>
+                        <div class="text-[10px] text-gray-400 font-extrabold uppercase tracking-widest">Community</div>
+                        <div class="text-xs font-bold text-white">200+ Active Athletes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="reveal py-16 px-4 md:px-8 border-y border-gray-900 bg-brand-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="stat-card glass-panel p-6 sm:p-8 rounded-2xl relative overflow-hidden border-glow">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-neon-gradient"></div>
+                    <div class="font-display text-4xl sm:text-6xl text-white font-black mb-1 flex items-center justify-center">
+                        <span class="counter" data-target="500">0</span><span class="text-brand-red">+</span>
+                    </div>
+                    <div class="text-xs font-bold text-gray-300 uppercase tracking-wider">Active Members</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Dedicated local athletes</p>
+                </div>
+
+                <div class="stat-card glass-panel p-6 sm:p-8 rounded-2xl relative overflow-hidden border-glow">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-neon-gradient"></div>
+                    <div class="font-display text-4xl sm:text-6xl text-white font-black mb-1 flex items-center justify-center">
+                        <span class="counter" data-target="35">0</span><span class="text-brand-red">+</span>
+                    </div>
+                    <div class="text-xs font-bold text-gray-300 uppercase tracking-wider">Pro Racks & Stations</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Free weights & machines</p>
+                </div>
+
+                <div class="stat-card glass-panel p-6 sm:p-8 rounded-2xl relative overflow-hidden border-glow">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-neon-gradient"></div>
+                    <div class="font-display text-4xl sm:text-6xl text-white font-black mb-1 flex items-center justify-center">
+                        <span class="counter" data-target="98">0</span><span class="text-brand-red">%</span>
+                    </div>
+                    <div class="text-xs font-bold text-gray-300 uppercase tracking-wider">Goal Satisfaction</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Proven member results</p>
+                </div>
+
+                <div class="stat-card glass-panel p-6 sm:p-8 rounded-2xl relative overflow-hidden border-glow">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-neon-gradient"></div>
+                    <div class="font-display text-4xl sm:text-6xl text-white font-black mb-1 flex items-center justify-center">
+                        <span>6</span><span class="text-brand-red"> Days</span>
+                    </div>
+                    <div class="text-xs font-bold text-gray-300 uppercase tracking-wider">Weekly Access</div>
+                    <p class="text-[10px] text-gray-400 mt-1">Sat – Thu continuous training</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Fitness Tool Hub Section -->
+    <section id="why" class="reveal scroll-mt-24 py-24 px-4 md:px-8 bg-brand-black border-b border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="text-brand-red font-extrabold text-xs tracking-widest uppercase">WHY POWER GYM</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold tracking-wide mt-1 uppercase">Everything you need to train</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="glass-panel pro-card border-glow rounded-3xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-5"><i data-lucide="users" class="w-6 h-6"></i></div>
+        <h3 class="font-display text-2xl font-bold uppercase mb-2">Women's session</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">A dedicated session for women, 2:00 PM to 6:00 PM, Saturday to Thursday.</p>
+      </div>
+      <div class="glass-panel pro-card border-glow rounded-3xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-5"><i data-lucide="dumbbell" class="w-6 h-6"></i></div>
+        <h3 class="font-display text-2xl font-bold uppercase mb-2">Strength and cardio floor</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">Weights, machines and cardio equipment for beginners and regulars alike.</p>
+      </div>
+      <div class="glass-panel pro-card border-glow rounded-3xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-5"><i data-lucide="award" class="w-6 h-6"></i></div>
+        <h3 class="font-display text-2xl font-bold uppercase mb-2">Coaches who fix your form</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">Trainers watch your technique and adjust your plan as you progress.</p>
+      </div>
+      <div class="glass-panel pro-card border-glow rounded-3xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-5"><i data-lucide="shower-head" class="w-6 h-6"></i></div>
+        <h3 class="font-display text-2xl font-bold uppercase mb-2">Lockers and showers</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">Store your bag, train, and freshen up before you head back out.</p>
+      </div>
+      <div class="glass-panel pro-card border-glow rounded-3xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-5"><i data-lucide="shopping-bag" class="w-6 h-6"></i></div>
+        <h3 class="font-display text-2xl font-bold uppercase mb-2">Supplement store</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">Browse supplements in the store and order straight on WhatsApp.</p>
+      </div>
+      <div class="glass-panel pro-card border-glow rounded-3xl p-7">
+        <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-5"><i data-lucide="calculator" class="w-6 h-6"></i></div>
+        <h3 class="font-display text-2xl font-bold uppercase mb-2">Fitness calculators</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">Use the calculators on this page to plan your goals before you join.</p>
+      </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="reveal py-24 px-4 md:px-8 bg-brand-black border-b border-gray-900 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-block bg-brand-red/10 text-brand-red border border-brand-red/30 px-4 py-1 rounded-full font-black text-xs tracking-widest uppercase mb-3">
+                    02 — INTERACTIVE TOOLKIT
+                </span>
+                <h2 class="font-display text-4xl sm:text-6xl font-black tracking-tight text-white uppercase">
+                    POWER <span class="text-transparent bg-clip-text bg-neon-gradient text-glow">FITNESS CALCULATOR</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base mt-2">
+                    Check your current health metrics, calculated target daily protein/calories, or estimated One-Rep Max right now.
+                </p>
+            </div>
+
+            <!-- Tool Tabs -->
+            <div class="flex justify-center border-b border-gray-800 mb-8 gap-2 sm:gap-6">
+                <button onclick="switchCalcTab('bmi')" id="tab-btn-bmi" class="calc-tab-btn py-3 px-4 text-xs font-bold tracking-widest uppercase border-b-2 border-brand-red text-white transition-all">
+                    BMI & Health
+                </button>
+                <button onclick="switchCalcTab('calories')" id="tab-btn-calories" class="calc-tab-btn py-3 px-4 text-xs font-bold tracking-widest uppercase border-b-2 border-transparent text-gray-400 hover:text-white transition-all">
+                    Calorie & Protein Target
+                </button>
+                <button onclick="switchCalcTab('orm')" id="tab-btn-orm" class="calc-tab-btn py-3 px-4 text-xs font-bold tracking-widest uppercase border-b-2 border-transparent text-gray-400 hover:text-white transition-all">
+                    1-Rep Max Strength
+                </button>
+            </div>
+
+            <!-- Tab 1: BMI Calculator -->
+            <div id="calc-tab-bmi" class="calc-content glass-panel p-6 sm:p-10 rounded-3xl border-glow">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h3 class="font-display text-2xl font-bold text-white uppercase">Body Mass Index (BMI)</h3>
+                        <p class="text-xs text-gray-400">Enter your current height and weight to calculate your body status.</p>
+                        
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Weight (KG)</label>
+                            <input type="number" id="bmi-weight" placeholder="e.g. 70" value="72" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-brand-red">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Height (CM)</label>
+                            <input type="number" id="bmi-height" placeholder="e.g. 175" value="175" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3.5 text-sm text-white focus:outline-none focus:border-brand-red">
+                        </div>
+                        <button onclick="calculateBMI()" class="pro-btn w-full bg-neon-gradient text-white py-3.5 rounded-xl font-bold tracking-widest hover:shadow-neon transition-all uppercase text-xs">
+                            CALCULATE BMI
+                        </button>
+                    </div>
+
+                    <div id="bmi-result-card" class="bg-brand-dark/90 p-6 rounded-2xl border border-gray-800 flex flex-col justify-center items-center text-center h-full min-h-[220px]">
+                        <div class="text-xs font-bold text-gray-400 uppercase mb-2">YOUR RESULT</div>
+                        <div id="bmi-value" class="font-display text-6xl font-black text-brand-red mb-1">23.5</div>
+                        <div id="bmi-status" class="text-sm font-bold text-green-400 uppercase tracking-widest mb-3">Normal Weight</div>
+                        <p id="bmi-advice" class="text-xs text-gray-300 max-w-xs leading-relaxed">
+                            Great health baseline! Join POWER GYM to build lean muscle density and strength.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Calorie & Protein Goal -->
+            <div id="calc-tab-calories" class="calc-content hidden glass-panel p-6 sm:p-10 rounded-3xl border-glow">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h3 class="font-display text-2xl font-bold text-white uppercase">Daily Calorie & Macro Target</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Weight (KG)</label>
+                                <input type="number" id="macro-weight" value="70" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-brand-red">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Primary Goal</label>
+                                <select id="macro-goal" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                                    <option value="build">Build Muscle (+300 kcal)</option>
+                                    <option value="fatloss">Fat Loss (-400 kcal)</option>
+                                    <option value="maintain">Maintain Physique</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="calculateMacros()" class="pro-btn w-full bg-neon-gradient text-white py-3.5 rounded-xl font-bold tracking-widest hover:shadow-neon transition-all uppercase text-xs">
+                            CALCULATE TARGET MACROS
+                        </button>
+                    </div>
+
+                    <div class="bg-brand-dark/90 p-6 rounded-2xl border border-gray-800 flex flex-col justify-center items-center text-center h-full">
+                        <div class="text-xs font-bold text-gray-400 uppercase mb-4">RECOMMENDED DAILY INTAKE</div>
+                        <div class="grid grid-cols-2 gap-4 w-full">
+                            <div class="p-3 bg-brand-black rounded-xl border border-gray-800">
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Daily Calories</div>
+                                <div id="macro-kcal" class="font-display text-2xl font-black text-brand-orange">2,450 kcal</div>
+                            </div>
+                            <div class="p-3 bg-brand-black rounded-xl border border-gray-800">
+                                <div class="text-[10px] text-gray-400 uppercase font-bold">Protein Target</div>
+                                <div id="macro-protein" class="font-display text-2xl font-black text-brand-red">140g / day</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: One Rep Max (1RM) -->
+            <div id="calc-tab-orm" class="calc-content hidden glass-panel p-6 sm:p-10 rounded-3xl border-glow">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h3 class="font-display text-2xl font-bold text-white uppercase">1-Rep Max Strength Estimator</h3>
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Lifted Weight (KG)</label>
+                            <input type="number" id="orm-weight" value="80" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-brand-red">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Repetitions Completed</label>
+                            <input type="number" id="orm-reps" value="5" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-brand-red">
+                        </div>
+                        <button onclick="calculateORM()" class="pro-btn w-full bg-neon-gradient text-white py-3.5 rounded-xl font-bold tracking-widest hover:shadow-neon transition-all uppercase text-xs">
+                            ESTIMATE 1RM
+                        </button>
+                    </div>
+
+                    <div class="bg-brand-dark/90 p-6 rounded-2xl border border-gray-800 flex flex-col justify-center items-center text-center h-full">
+                        <div class="text-xs font-bold text-gray-400 uppercase mb-2">ESTIMATED MAXIMUM LIFT (1RM)</div>
+                        <div id="orm-result" class="font-display text-6xl font-black text-brand-gold mb-2">93 KG</div>
+                        <p class="text-xs text-gray-400 max-w-xs">Calculated using the Epley formula for compound movements (Bench Press, Squat, Deadlift).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRO PRODUCTS & SUPPLEMENTS STORE SECTION -->
+    <section id="products" class="reveal py-24 px-4 md:px-8 bg-brand-dark border-b border-gray-900 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="inline-block bg-brand-orange/10 text-brand-orange border border-brand-orange/30 px-4 py-1 rounded-full font-black text-xs tracking-widest uppercase mb-3">
+                    03 — OFFICIAL SUPPLEMENT STORE
+                </span>
+                <h2 class="font-display text-4xl sm:text-6xl font-black tracking-tight text-white uppercase">
+                    POWER <span class="text-transparent bg-clip-text bg-neon-gradient text-glow">NUTRITION & GEAR</span>
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base mt-2">
+                    100% Authentic Creatines, Whey Proteins & Mass Gainers. Instant direct ordering via WhatsApp with fast delivery in Chuadanga.
+                </p>
+            </div>
+
+            <!-- Product Category Filter Tabs -->
+            <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mb-12">
+          
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <!-- Product 1: Applied Nutrition Creatine Monohydrate -->
+                <div class="product-card glass-panel pro-card rounded-2xl p-5 flex flex-col justify-between border-glow relative group" data-category="creatine">
+                    <span class="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-md bg-brand-red text-white text-[9px] font-black uppercase tracking-wider shadow-md">
+                        BESTSELLER
+                    </span>
+                    <div class="relative w-full aspect-square bg-brand-black/60 rounded-xl overflow-hidden p-4 mb-4 flex items-center justify-center">
+                        <img alt="Product photo" loading="lazy" decoding="async" src="Applied icy buzz - Copy.png">
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center gap-1 text-brand-gold text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <span class="text-gray-400 text-[10px] ml-1">(4.9/5)</span>
+                        </div>
+                        <div class="text-[10px] text-brand-red font-black uppercase tracking-widest">CREATINE MONOHYDRATE</div>
+                        <h3 class="font-display text-xl font-black text-white uppercase line-clamp-1">Applied Nutrition</h3>
+                        <p class="text-xs text-gray-400 line-clamp-2">Icy Blue Razz & strawberry</p>
+                        <div class="flex items-center gap-3 pt-2">
+                            <span class="text-xs text-gray-400 font-bold">Stats:</span>
+                            <span class="px-2 py-0.5 rounded bg-brand-black text-[10px] text-gray-300 font-bold border border-gray-800">250g / 50 Servings</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-500 font-bold block uppercase">Price</span>
+                            <span class="font-display text-2xl font-black text-white">৳2,999</span>
+                        </div>
+                        <button onclick="openProductPurchaseModal('Applied Nutrition Creatine Monohydrate', '৳2,999', '250g (50 Servings)', 'Icy Blue Razz & strawberry')" class="pro-btn bg-neon-gradient text-white px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:shadow-neon transition-all flex items-center gap-1.5">
+                            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                            <span>Purchase</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2: Wellcore Micronized Creatine Monohydrate -->
+                <div class="product-card glass-panel pro-card rounded-2xl p-5 flex flex-col justify-between border-glow relative group" data-category="creatine">
+                    <span class="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-md bg-brand-orange text-white text-[9px] font-black uppercase tracking-wider shadow-md">
+                        PURE POWER
+                    </span>
+                    <div class="relative w-full aspect-square bg-brand-black/60 rounded-xl overflow-hidden p-4 mb-4 flex items-center justify-center">
+                        <img alt="Product photo" loading="lazy" decoding="async" src="wellcore - Copy.jpg">
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center gap-1 text-brand-gold text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <span class="text-gray-400 text-[10px] ml-1">(4.8/5)</span>
+                        </div>
+                        <div class="text-[10px] text-brand-orange font-black uppercase tracking-widest">100% PURE CREATINE</div>
+                        <h3 class="font-display text-xl font-black text-white uppercase line-clamp-1">Wellcore Micronized Creatine</h3>
+                        <p class="text-xs text-gray-400 line-clamp-2">Fruit Fusion,Tropical Tango,Kiwi Kick,Watermelon Wave,Lemon Lime,Cranberry Crush</p>
+                        <div class="flex items-center gap-3 pt-2">
+                            <span class="text-xs text-gray-400 font-bold">Stats:</span>
+                            <span class="px-2 py-0.5 rounded bg-brand-black text-[10px] text-gray-300 font-bold border border-gray-800">250g / 3g Per Scoop</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-500 font-bold block uppercase">Price</span>
+                            <span class="font-display text-2xl font-black text-white">৳2,800</span>
+                        </div>
+                        <button onclick="openProductPurchaseModal('Wellcore Micronized Creatine', '৳2,800', '250g Container', 'Unflavored / ')" class="pro-btn bg-neon-gradient text-white px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:shadow-neon transition-all flex items-center gap-1.5">
+                            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                            <span>Purchase</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3: MuscleBlaze Biozyme Performance Whey -->
+                <div class="product-card glass-panel pro-card rounded-2xl p-5 flex flex-col justify-between border-glow relative group" data-category="whey">
+                    <span class="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-md bg-brand-gold text-brand-black text-[9px] font-black uppercase tracking-wider shadow-md">
+                        CLINICALLY TESTED
+                    </span>
+                    <div class="relative w-full aspect-square bg-brand-black/60 rounded-xl overflow-hidden p-4 mb-4 flex items-center justify-center">
+                        <img alt="Product photo" loading="lazy" decoding="async" src="nutex mono.jpg">
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center gap-1 text-brand-gold text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <span class="text-gray-400 text-[10px] ml-1">(5.0/5)</span>
+                        </div>
+
+                          <div class="text-[10px] text-brand-orange font-black uppercase tracking-widest">CREATINE MONOHYDRATE</div>
+                        <h3 class="font-display text-xl font-black text-white uppercase line-clamp-1">NUTREX</h3>
+
+                       
+       
+                        <h3 class="font-display text-xl font-black text-white uppercase line-clamp-1"></h3>
+                        <p class="text-xs text-gray-400 line-clamp-2"></p>
+                        <div class="flex items-center gap-3 pt-2">
+                            <span class="text-xs text-gray-400 font-bold">Stats:</span>
+                            <span class="px-2 py-0.5 rounded bg-brand-black text-[10px] text-gray-300 font-bold border border-gray-800">60serving</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-500 font-bold block uppercase">Price</span>
+                            <span class="font-display text-2xl font-black text-white">৳2,999</span>
+                        </div>
+                        <button onclick="openProductPurchaseModal('NUTREX CREATINE MONOHYDRATE', '৳2.999', '', '')" class="pro-btn bg-neon-gradient text-white px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:shadow-neon transition-all flex items-center gap-1.5">
+                            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                            <span>Purchase</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4: MuscleBlaze MB Super Gainer XXL -->
+                <div class="product-card glass-panel pro-card rounded-2xl p-5 flex flex-col justify-between border-glow relative group" data-category="gainer">
+                    <span class="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-md bg-brand-red text-white text-[9px] font-black uppercase tracking-wider shadow-md">
+                        HIGH CALORIE
+                    </span>
+                    <div class="relative w-full aspect-square bg-brand-black/60 rounded-xl overflow-hidden p-4 mb-4 flex items-center justify-center">
+                        <img alt="Product photo" loading="lazy" decoding="async" src="gpldd.jpg">
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center gap-1 text-brand-gold text-xs">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-brand-gold"></i>
+                            <span class="text-gray-400 text-[10px] ml-1">(4.9/5)</span>
+                        </div>
+                        <div class="text-[10px] text-brand-red font-black uppercase tracking-widest">Kevin Levrone creatine</div>
+                        <h3 class="font-display text-xl font-black text-white uppercase line-clamp-1">GOLD</h3>
+                        <p class="text-xs text-gray-400 line-clamp-2"></p>
+                        <div class="flex items-center gap-3 pt-2">
+                            <span class="text-xs text-gray-400 font-bold">Stats:</span>
+                            <span class="px-2 py-0.5 rounded bg-brand-black text-[10px] text-gray-300 font-bold border border-gray-800">300g / 60serving</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-500 font-bold block uppercase">Price</span>
+                            <span class="font-display text-2xl font-black text-white">৳2,590</span>
+                        </div>
+                        <button onclick="openProductPurchaseModal('Kevin Levrone gold creatine', '৳2,590', '', '')" class="pro-btn bg-neon-gradient text-white px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:shadow-neon transition-all flex items-center gap-1.5">
+                            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                            <span>Purchase</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 5: Optimum Nutrition ON Gold Standard 100% Whey -->
+              
+
+            </div>
+
+            <!-- Guarantee Banner -->
+            <div class="mt-12 glass-panel rounded-2xl p-6 border border-brand-red/30 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-brand-red/10 border border-brand-red/40 flex items-center justify-center text-brand-red shrink-0">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-lg font-bold text-white uppercase">100% Genuine Authenticity Guaranteed</h4>
+                        <p class="text-xs text-gray-400">All products imported directly from verified brand distributors with official seal.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 shrink-0">
+                    <span class="text-xs font-extrabold text-brand-orange uppercase">Fast Chuadanga Pickup & Delivery</span>
+                    <a href="https://wa.me/8801707248891?text=Hi%20POWER%20GYM,%20I%20have%20a%20question%20about%20your%20supplements" target="_blank" class="px-4 py-2 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>Ask on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class Schedule Section -->
+    <section id="schedule" class="reveal py-24 px-4 md:px-8 bg-brand-dark border-b border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-red font-extrabold text-xs tracking-widest uppercase">TIMETABLE</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold tracking-wide mt-1 uppercase">TRAINING SCHEDULE</h2>
+                <p class="text-gray-400 text-xs sm:text-sm mt-2">Everyday Saturday to Thursday • Dedicated gender-specific sessions</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Morning Session (Men) -->
+                <div class="glass-panel pro-card p-6 rounded-2xl border-glow flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-red"></div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-3 py-1 rounded-full bg-brand-red/10 text-brand-red border border-brand-red/30 text-[10px] font-black uppercase tracking-wider">Men's Session</span>
+                            <span class="text-xs text-gray-300 font-extrabold flex items-center gap-1">
+                                <i data-lucide="sun" class="w-3.5 h-3.5 text-brand-orange"></i> 06:00 AM - 02:00 PM
+                            </span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-white mb-2 uppercase">Morning Strength & Hypertrophy</h3>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">Focused compound muscle building, progressive overload, heavy power rack training, and barbell routines.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-gray-800/80 pt-4 text-xs font-bold">
+                        <span class="text-gray-300">Head Coach: <span class="text-white">Ahsan</span></span>
+                        <a href="#pricing" class="text-brand-red hover:text-brand-orange transition-colors uppercase text-[11px] font-black flex items-center gap-1">
+                            <span>Join Session</span>
+                            <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Afternoon Session (Women) -->
+                <div class="glass-panel pro-card p-6 rounded-2xl border-glow flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange"></div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-3 py-1 rounded-full bg-brand-orange/10 text-brand-orange border border-brand-orange/30 text-[10px] font-black uppercase tracking-wider">Women's Session</span>
+                            <span class="text-xs text-gray-300 font-extrabold flex items-center gap-1">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i> 02:00 PM - 06:00 PM
+                            </span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-white mb-2 uppercase">Women's Fitness & Sculpt</h3>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">Dedicated private female environment for high-intensity cardio, core strengthening, body sculpting, and fat loss routines.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-gray-800/80 pt-4 text-xs font-bold">
+                        <span class="text-gray-300">Lead Coach: <span class="text-white">Coach Saima</span></span>
+                        <a href="#pricing" class="text-brand-red hover:text-brand-orange transition-colors uppercase text-[11px] font-black flex items-center gap-1">
+                            <span>Join Session</span>
+                            <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Evening Session (Men) -->
+                <div class="glass-panel pro-card p-6 rounded-2xl border-glow flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-gold"></div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold border border-brand-gold/30 text-[10px] font-black uppercase tracking-wider">Men's Session</span>
+                            <span class="text-xs text-gray-300 font-extrabold flex items-center gap-1">
+                                <i data-lucide="moon" class="w-3.5 h-3.5 text-brand-gold"></i> 06:00 PM - 11:00 PM
+                            </span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-white mb-2 uppercase">Evening Heavy Power Hour</h3>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">High-energy evening session for heavy deadlifts, squats, bench press form coaching, and endurance conditioning.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-gray-800/80 pt-4 text-xs font-bold">
+                        <span class="text-gray-300">Head Coach: <span class="text-white">Ahsan</span></span>
+                        <a href="#pricing" class="text-brand-red hover:text-brand-orange transition-colors uppercase text-[11px] font-black flex items-center gap-1">
+                            <span>Join Session</span>
+                            <i data-lucide="chevron-right" class="w-3 h-3"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 glass-panel p-4 rounded-xl flex flex-col sm:flex-row justify-between items-center text-xs text-gray-300 font-bold gap-3 border-gray-800">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="calendar" class="w-4 h-4 text-brand-red"></i>
+                    <span>OPERATING DAYS: <span class="text-white">SATURDAY THROUGH THURSDAY EVERY DAY</span></span>
+                </div>
+                <div class="flex items-center gap-2 text-brand-orange">
+                    <i data-lucide="info" class="w-4 h-4"></i>
+                    <span>FRIDAY: CLOSED FOR DEEP MAINTENANCE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pro Trainers Section -->
+    <section id="trainers" class="reveal py-24 px-4 md:px-8 bg-brand-black border-b border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-red font-extrabold text-xs tracking-widest uppercase">EXPERT COACHING</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold tracking-wide mt-1 uppercase">MEET OUR PRO TRAINERS</h2>
+                <p class="text-gray-400 text-sm mt-2">Certified physical transformation coaches guiding you every step of the way.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-panel p-6 rounded-3xl border-glow flex flex-col sm:flex-row gap-6 items-center">
+                    <div class="w-36 h-44 rounded-2xl overflow-hidden shrink-0 bg-brand-dark border border-gray-800 relative">
+                        <img loading="lazy" decoding="async" src="bandicam 2026-09-28 19-30-32-843.jpg" class="w-full h-full object-cover object-top" alt="Coach Ahsan">
+                        <div class="absolute bottom-2 left-2 right-2 bg-brand-red/90 text-white text-[9px] font-black text-center py-0.5 rounded uppercase">HEAD TRAINER</div>
+                    </div>
+                    <div class="space-y-3 text-center sm:text-left flex-1">
+                        <div>
+                            <h3 class="font-display text-2xl font-bold text-white uppercase">Ahsan</h3>
+                            <p class="text-xs text-brand-red font-extrabold uppercase">Strength & Biomechanics Lead</p>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Specializes in heavy strength gains, muscle hypertrophy, powerlifting technique, and customized body transformations for men.
+                        </p>
+                        <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <span class="px-2.5 py-1 rounded bg-brand-dark text-gray-300 text-[10px] font-bold border border-gray-800">Hypertrophy</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-dark text-gray-300 text-[10px] font-bold border border-gray-800">Strength Prep</span>
+                        </div>
+                        <button onclick="openTrialModal('Ahsan')" class="w-full sm:w-auto bg-neon-gradient text-white px-5 py-2.5 rounded-xl font-bold text-xs tracking-widest uppercase hover:shadow-neon transition-all mt-2">
+                            BOOK FREE TRIAL
+                        </button>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-3xl border-glow flex flex-col sm:flex-row gap-6 items-center">
+                    <div class="w-36 h-44 rounded-2xl overflow-hidden shrink-0 bg-brand-dark border border-gray-800 relative">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-brand-dark to-black"><i data-lucide="user-round" class="w-16 h-16 text-brand-orange/50"></i></div>
+                        <div class="absolute bottom-2 left-2 right-2 bg-brand-orange/90 text-white text-[9px] font-black text-center py-0.5 rounded uppercase">WOMEN'S LEAD</div>
+                    </div>
+                    <div class="space-y-3 text-center sm:text-left flex-1">
+                        <div>
+                            <h3 class="font-display text-2xl font-bold text-white uppercase">Coach Saima</h3>
+                            <p class="text-xs text-brand-orange font-extrabold uppercase">Female Fitness Specialist</p>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Dedicated female coach leading metabolic conditioning, fat loss, weight loss diet charts, and toning programs during female hours.
+                        </p>
+                        <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <span class="px-2.5 py-1 rounded bg-brand-dark text-gray-300 text-[10px] font-bold border border-gray-800">Fat Loss</span>
+                            <span class="px-2.5 py-1 rounded bg-brand-dark text-gray-300 text-[10px] font-bold border border-gray-800">Female Sculpt</span>
+                        </div>
+                        <button onclick="openTrialModal('Coach Saima')" class="w-full sm:w-auto bg-neon-gradient text-white px-5 py-2.5 rounded-xl font-bold text-xs tracking-widest uppercase hover:shadow-neon transition-all mt-2">
+                            BOOK FREE TRIAL
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery & Community Spotlight Section -->
+    <section id="gallery" class="reveal py-24 px-4 md:px-8 bg-brand-dark border-b border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="inline-block bg-brand-red/10 text-brand-red border border-brand-red/30 px-4 py-1 rounded-full font-black text-xs tracking-widest uppercase mb-3">
+                    06 — COMMUNITY & EVENTS
+                </span>
+                <h2 class="font-display text-4xl sm:text-6xl font-black tracking-tight text-white uppercase">
+                    POWER <span class="text-transparent bg-clip-text bg-neon-gradient text-glow">GALLERY</span>
+                </h2>
+                <p class="text-gray-400 text-sm mt-2">
+                    A glimpse into our training community, member brotherhood, and gym milestone celebrations.
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="glass-panel pro-card p-3 rounded-2xl border-glow group relative overflow-hidden">
+                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-brand-black relative">
+                        <img loading="lazy" decoding="async" src="825309979_4394648677532211_8043102247045456833_n.jpg" alt="Power Gym Members Group Photo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent opacity-60"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-brand-black/80 text-brand-red border border-brand-red/30 text-[10px] font-black uppercase">
+                            Brotherhood
+                        </span>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-display text-lg font-bold text-white uppercase">Member Community Group</h3>
+                        <p class="text-xs text-gray-400 mt-1">Athletes gathering after high-intensity floor sessions at Power Gym Chuadanga.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="glass-panel pro-card p-3 rounded-2xl border-glow group relative overflow-hidden">
+                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-brand-black relative">
+                        <img loading="lazy" decoding="async" src="825309953_1435682865157022_5482788999283621089_n.jpg" alt="Birthday Celebration Cake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent opacity-60"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-brand-black/80 text-brand-orange border border-brand-orange/30 text-[10px] font-black uppercase">
+                            Celebration
+                        </span>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-display text-lg font-bold text-white uppercase">Milestone Celebrations</h3>
+                        <p class="text-xs text-gray-400 mt-1">Celebrating member milestones and birthday achievements together.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="glass-panel pro-card p-3 rounded-2xl border-glow group relative overflow-hidden">
+                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-brand-black relative">
+                        <img loading="lazy" decoding="async" src="825309917_3231625557035019_2212572690040839143_n.jpg" alt="Gym Coaching & Training Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent opacity-60"></div>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-brand-black/80 text-brand-gold border border-brand-gold/30 text-[10px] font-black uppercase">
+                            On The Floor
+                        </span>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-display text-lg font-bold text-white uppercase">Coaching & Floor Action</h3>
+                        <p class="text-xs text-gray-400 mt-1">Direct coaching support and hands-on guidance during training hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Membership Section -->
+    <section id="results" class="reveal scroll-mt-24 py-24 px-4 md:px-8 bg-dark-radial border-b border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="text-brand-red font-extrabold text-xs tracking-widest uppercase">MEMBER STORIES</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold tracking-wide mt-1 uppercase">Members say it best</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-5">
+      <figure class="glass-panel pro-card border-glow rounded-3xl p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex gap-1 text-brand-gold mb-4" role="img" aria-label="5 out of 5 stars"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+          <blockquote class="text-sm text-gray-300 leading-relaxed">“The coaches correct your form instead of just counting reps. I train safer now and I can see the difference.”</blockquote>
+        </div>
+        <figcaption class="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full bg-neon-gradient flex items-center justify-center font-display font-bold" aria-hidden="true">R</span>
+          <span><span class="block text-sm font-bold text-white">Rafiq</span><span class="block text-[11px] text-gray-400">Evening batch member</span></span>
+        </figcaption>
+      </figure>
+      <figure class="glass-panel pro-card border-glow rounded-3xl p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex gap-1 text-brand-gold mb-4" role="img" aria-label="5 out of 5 stars"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+          <blockquote class="text-sm text-gray-300 leading-relaxed">“The women's session is why I joined. It is calm and clean, and my coach actually follows up on my progress.”</blockquote>
+        </div>
+        <figcaption class="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full bg-neon-gradient flex items-center justify-center font-display font-bold" aria-hidden="true">N</span>
+          <span><span class="block text-sm font-bold text-white">Nusrat</span><span class="block text-[11px] text-gray-400">Women's session member</span></span>
+        </figcaption>
+      </figure>
+      <figure class="glass-panel pro-card border-glow rounded-3xl p-7 flex flex-col justify-between">
+        <div>
+          <div class="flex gap-1 text-brand-gold mb-4" role="img" aria-label="5 out of 5 stars"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+          <blockquote class="text-sm text-gray-300 leading-relaxed">“I joined to lose weight. The calculators and my coach's plan gave me a routine I can actually keep.”</blockquote>
+        </div>
+        <figcaption class="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full bg-neon-gradient flex items-center justify-center font-display font-bold" aria-hidden="true">S</span>
+          <span><span class="block text-sm font-bold text-white">Sabbir</span><span class="block text-[11px] text-gray-400">Morning batch member</span></span>
+        </figcaption>
+      </figure>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="reveal py-28 px-4 md:px-8 relative bg-brand-black border-b border-gray-900">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-red/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="inline-block bg-brand-red/10 text-brand-red border border-brand-red/30 px-4 py-1 rounded-full font-black text-xs tracking-widest uppercase mb-3">
+                    07 — MEMBERSHIP PLANS
+                </span>
+                <h2 class="font-display text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-white uppercase">
+                    CHOOSE YOUR <span class="text-transparent bg-clip-text bg-neon-gradient text-glow">POWER PASS</span>
+                </h2>
+                <p class="text-gray-300 mt-4 text-sm sm:text-base font-medium">
+                    Transparent pricing. Zero hidden charges. Lock in your spot today.
+                </p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div id="plans" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 1 Month Plan -->
+                <div class="plan-card glass-panel p-8 rounded-3xl flex flex-col justify-between relative border-glow">
+                    <div>
+                        <div class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Basic Starter</div>
+                        <h3 class="font-display text-3xl font-black text-white mb-4">1 MONTH</h3>
+                        <div class="flex items-baseline mb-1">
+                            <span class="text-4xl sm:text-5xl font-black text-white price-display" data-std="৳499">৳499</span>
+                        </div>
+                        <div class="text-xs text-brand-red font-bold mb-6 admission-fee">+ ৳500 Admission Fee</div>
+
+                        <ul class="space-y-3 text-xs text-gray-300 mb-8 border-t border-gray-800/80 pt-6">
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Modern Heavy Equipment</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Changing Room & Showers</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Initial Workout Guidance</li>
+                        </ul>
+                    </div>
+                    <button onclick="openCheckout('1 Month Plan', 499, 500)" class="w-full bg-gray-800 hover:bg-brand-red text-white py-3.5 rounded-xl font-bold tracking-widest transition-all uppercase text-xs">
+                        SELECT PLAN
+                    </button>
+                </div>
+
+                <!-- 4 Months Plan -->
+                <div class="plan-card glass-panel p-8 rounded-3xl flex flex-col justify-between relative border-2 border-brand-red shadow-neon-lg scale-105 z-20 bg-brand-dark">
+                    <div class="absolute -top-4 right-6 bg-neon-gradient text-white text-[10px] font-black tracking-widest py-1.5 px-4 rounded-full uppercase shadow-lg flex items-center gap-1">
+                        <i data-lucide="zap" class="w-3 h-3 fill-current"></i> MOST POPULAR
+                    </div>
+                    <div>
+                        <div class="text-xs font-black text-brand-red uppercase tracking-widest mb-2">High Value</div>
+                        <h3 class="font-display text-4xl font-black text-white mb-4">4 MONTHS</h3>
+                        <div class="flex items-baseline mb-1">
+                            <span class="text-5xl font-black text-white price-display" data-std="৳1,499">৳1,499</span>
+                        </div>
+                        <div class="text-xs text-green-400 font-extrabold mb-6 tracking-wide admission-fee">ADMISSION FREE (SAVE ৳500)</div>
+
+                        <ul class="space-y-3.5 text-xs text-gray-200 mb-8 border-t border-gray-800 pt-6">
+                            <li class="flex items-center gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-red shrink-0"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-red shrink-0"></i> Modern Heavy Equipment</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-red shrink-0"></i> Changing Room & Lockers</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-brand-red shrink-0"></i> Free Body Composition Test</li>
+                            <li class="flex items-center gap-2.5 text-white font-bold"><i data-lucide="star" class="w-4 h-4 text-brand-orange shrink-0 fill-brand-orange"></i> Best Long-Term Results</li>
+                        </ul>
+                    </div>
+                    <button onclick="openCheckout('4 Months Plan', 1499, 0)" class="pro-btn w-full bg-neon-gradient text-white py-4 rounded-xl font-black tracking-widest hover:shadow-neon transition-all uppercase text-xs">
+                        SELECT PLAN
+                    </button>
+                </div>
+
+                <!-- 6 Months Plan -->
+                <div class="plan-card glass-panel p-8 rounded-3xl flex flex-col justify-between relative border-glow">
+                    <div>
+                        <div class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Dedicated</div>
+                        <h3 class="font-display text-3xl font-black text-white mb-4">6 MONTHS</h3>
+                        <div class="flex items-baseline mb-1">
+                            <span class="text-4xl sm:text-5xl font-black text-white price-display" data-std="৳2,199">৳2,199</span>
+                        </div>
+                        <div class="text-xs text-green-400 font-bold mb-6 admission-fee">ADMISSION FREE</div>
+
+                        <ul class="space-y-3 text-xs text-gray-300 mb-8 border-t border-gray-800/80 pt-6">
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Modern Heavy Equipment</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Free Customized Diet Chart</li>
+                            <li class="flex items-center gap-2.5 text-white font-bold"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Extended Training Support</li>
+                        </ul>
+                    </div>
+                    <button onclick="openCheckout('6 Months Plan', 2199, 0)" class="w-full bg-gray-800 hover:bg-brand-red text-white py-3.5 rounded-xl font-bold tracking-widest transition-all uppercase text-xs">
+                        SELECT PLAN
+                    </button>
+                </div>
+
+                <!-- 1 Year Plan -->
+                <div class="plan-card glass-panel p-8 rounded-3xl flex flex-col justify-between relative border-glow">
+                    <div class="absolute -top-3.5 right-6 bg-brand-orange text-white text-[10px] font-black tracking-widest py-1 px-3.5 rounded-full uppercase shadow-lg">
+                        MAX SAVINGS
+                    </div>
+                    <div>
+                        <div class="text-xs font-black text-brand-orange uppercase tracking-widest mb-2">Ultimate Transformation</div>
+                        <h3 class="font-display text-3xl font-black text-white mb-4">1 YEAR</h3>
+                        <div class="flex items-baseline mb-1">
+                            <span class="text-4xl sm:text-5xl font-black text-white price-display" data-std="৳3,199">৳3,199</span>
+                        </div>
+                        <div class="text-xs text-green-400 font-bold mb-6 admission-fee">ADMISSION FREE</div>
+
+                        <ul class="space-y-3 text-xs text-gray-300 mb-8 border-t border-gray-800/80 pt-6">
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Full Gym Floor Access</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> All Pro Racks & Cardio Deck</li>
+                            <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-brand-red shrink-0"></i> Free Dedicated Locker</li>
+                            <li class="flex items-center gap-2.5 text-white font-bold"><i data-lucide="star" class="w-4 h-4 text-brand-orange shrink-0 fill-brand-orange"></i> Maximum Savings Rate</li>
+                        </ul>
+                    </div>
+                    <button onclick="openCheckout('1 Year Plan', 3199, 0)" class="w-full bg-gray-800 hover:bg-brand-red text-white py-3.5 rounded-xl font-bold tracking-widest transition-all uppercase text-xs">
+                        SELECT PLAN
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location, Hours & Map Section -->
+    <section id="visit" class="reveal scroll-mt-24 py-24 px-4 md:px-8 bg-brand-black border-b border-gray-900">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-brand-red font-extrabold text-xs tracking-widest uppercase">BOOK A VISIT</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold tracking-wide mt-1 uppercase mb-5">See the gym before you join</h2>
+                <p class="text-sm text-gray-400 leading-relaxed max-w-md mb-8">Leave your details and we will confirm a time on WhatsApp. Open Saturday to Thursday, 6:00 AM to 11:00 PM.</p>
+                <ol class="space-y-5">
+          <li class="flex gap-4"><span class="w-8 h-8 shrink-0 rounded-full bg-brand-red/15 text-brand-red font-display font-bold flex items-center justify-center">1</span><div><div class="font-bold text-white text-sm">Send your details</div><div class="text-xs text-gray-400 mt-0.5">The form opens WhatsApp with your message already written.</div></div></li>
+          <li class="flex gap-4"><span class="w-8 h-8 shrink-0 rounded-full bg-brand-red/15 text-brand-red font-display font-bold flex items-center justify-center">2</span><div><div class="font-bold text-white text-sm">Get a time</div><div class="text-xs text-gray-400 mt-0.5">We confirm a visit slot that suits your batch.</div></div></li>
+          <li class="flex gap-4"><span class="w-8 h-8 shrink-0 rounded-full bg-brand-red/15 text-brand-red font-display font-bold flex items-center justify-center">3</span><div><div class="font-bold text-white text-sm">Visit the gym</div><div class="text-xs text-gray-400 mt-0.5">Tour the floor, meet a coach and ask about plans.</div></div></li>
+                </ol>
+            </div>
+            <form id="visit-form" class="glass-panel pro-card border-glow rounded-3xl p-8 space-y-5" novalidate>
+                <div><label for="vname" class="block text-[11px] font-bold text-gray-400 uppercase mb-1.5">Your name</label><input id="vname" name="name" type="text" autocomplete="name" required placeholder="Full name" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/40"></div>
+                <div><label for="vphone" class="block text-[11px] font-bold text-gray-400 uppercase mb-1.5">Phone (optional)</label><input id="vphone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/40"></div>
+                <div><label for="goal" class="block text-[11px] font-bold text-gray-400 uppercase mb-1.5">Your goal</label><select id="goal" name="goal" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/40"><option class="bg-black">Build muscle</option><option class="bg-black">Lose weight</option><option class="bg-black">General fitness</option><option class="bg-black">Women's session</option><option class="bg-black">Not sure yet</option></select></div>
+                <div><label for="batch" class="block text-[11px] font-bold text-gray-400 uppercase mb-1.5">Preferred time</label><select id="batch" name="batch" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/40"><option class="bg-black">Morning (6 AM to 2 PM)</option><option class="bg-black">Women's session (2 PM to 6 PM)</option><option class="bg-black">Evening (6 PM to 11 PM)</option></select></div>
+                <button type="submit" class="pro-btn w-full bg-neon-gradient text-white py-4 rounded-xl font-black text-xs tracking-widest hover:shadow-neon transition-all flex items-center justify-center gap-2"><i data-lucide="message-circle" class="w-4 h-4"></i><span>SEND ON WHATSAPP</span></button>
+                <p id="visit-status" role="status" aria-live="polite" class="text-xs text-brand-orange min-h-[1rem]"></p>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal py-24 px-4 md:px-8 bg-brand-dark border-b border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-red font-extrabold text-xs tracking-widest uppercase">LOCATION & HOURS</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-bold tracking-wide mt-1 uppercase">VISIT POWER GYM CHUADANGA</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Contact info panel -->
+                <div class="glass-panel pro-card p-8 rounded-3xl space-y-6 flex flex-col justify-between border-glow">
+                    <div>
+                        <h3 class="font-display text-3xl font-bold text-white mb-6 uppercase">POWER GYM MAIN CENTER</h3>
+                        
+                        <div class="space-y-5 text-xs text-gray-300">
+                            <div class="flex items-start gap-4">
+                                <div class="p-3 rounded-xl bg-brand-red/10 text-brand-red shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                                <div>
+                                    <div class="text-[10px] text-gray-400 font-extrabold uppercase">Address</div>
+                                    <div class="text-white font-semibold text-sm mt-0.5">Boro Bazar, Chuadanga Sadar, Chuadanga</div>
+                                    <div class="text-gray-400 text-[11px]">Khulna Division, Bangladesh</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="p-3 rounded-xl bg-brand-red/10 text-brand-red shrink-0"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                                <div>
+                                    <div class="text-[10px] text-gray-400 font-extrabold uppercase">Phone & WhatsApp</div>
+                                    <div class="text-white font-semibold text-sm mt-0.5">+880 1707-248891</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="p-3 rounded-xl bg-brand-red/10 text-brand-red shrink-0"><i data-lucide="clock" class="w-5 h-5"></i></div>
+                                <div>
+                                    <div class="text-[10px] text-gray-400 font-extrabold uppercase">Gym Daily Schedule (Sat - Thu)</div>
+                                    <div class="text-white font-semibold text-sm mt-0.5">Men's Morning: 6:00 AM – 2:00 PM</div>
+                                    <div class="text-brand-orange font-bold text-xs mt-0.5">Women's Session: 2:00 PM – 6:00 PM</div>
+                                    <div class="text-white font-semibold text-sm mt-0.5">Men's Evening: 6:00 PM – 11:00 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row gap-3">
+                        <a href="https://maps.google.com/?q=23.6438,88.8556" target="_blank" class="flex-1 bg-neon-gradient text-white py-3.5 rounded-xl font-bold tracking-widest text-center hover:shadow-neon transition-all uppercase text-xs flex items-center justify-center gap-2">
+                            <i data-lucide="navigation" class="w-4 h-4"></i>
+                            <span>GET MAP DIRECTIONS</span>
+                        </a>
+                        <button onclick="document.getElementById('visit').scrollIntoView({behavior:'smooth'})" class="flex-1 glass-panel text-white py-3.5 rounded-xl font-bold tracking-widest text-center hover:border-brand-red/50 transition-all uppercase text-xs">
+                            BOOK A VISIT
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leaflet Interactive Map -->
+                <div class="glass-panel p-3 rounded-3xl h-[400px] lg:h-auto min-h-[360px]">
+                    <div id="map" class="w-full h-full rounded-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 px-4 md:px-8 bg-brand-black border-b border-gray-900">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-red font-extrabold text-xs tracking-widest uppercase">FREQUENT QUESTIONS</span>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-wide mt-1 uppercase">GOT QUESTIONS? WE HAVE ANSWERS.</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass-panel rounded-2xl p-5 cursor-pointer border-glow" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm text-white uppercase">
+                        <span>Are all supplements sold at Power Gym authentic?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-red transition-transform"></i>
+                    </div>
+                    <p class="faq-ans hidden text-xs text-gray-400 mt-3 leading-relaxed">
+                        Yes! 100% authentic guaranteed. All products like Applied Nutrition, Wellcore, MuscleBlaze, ON, and MuscleTech are sourced directly through official verified importers with scratch-codes.
+                    </p>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-5 cursor-pointer border-glow" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm text-white uppercase">
+                        <span>How does WhatsApp ordering work for products?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-red transition-transform"></i>
+                    </div>
+                    <p class="faq-ans hidden text-xs text-gray-400 mt-3 leading-relaxed">
+                        When you click "Purchase", fill out your details and flavor preferences. Clicking "Confirm & Order via WhatsApp" automatically opens WhatsApp with a ready-formatted order message sent straight to our official desk.
+                    </p>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-5 cursor-pointer border-glow" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm text-white uppercase">
+                        <span>Is there any admission fee for multi-month plans?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-red transition-transform"></i>
+                    </div>
+                    <p class="faq-ans hidden text-xs text-gray-400 mt-3 leading-relaxed">
+                        No! Admission fee (৳500) is completely waived on 4 Months, 6 Months, and 1 Year membership plans.
+                    </p>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-5 cursor-pointer border-glow" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm text-white uppercase">
+                        <span>Are trainers available to guide beginners?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-red transition-transform"></i>
+                    </div>
+                    <p class="faq-ans hidden text-xs text-gray-400 mt-3 leading-relaxed">
+                        Yes! Our head trainer Ahsan and female trainer Coach Saima provide active guidance on form, machine setup, and exercise selection for all members.
+                    </p>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-5 cursor-pointer border-glow" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm text-white uppercase">
+                        <span>What are the exact female training hours?</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-red transition-transform"></i>
+                    </div>
+                    <p class="faq-ans hidden text-xs text-gray-400 mt-3 leading-relaxed">
+                        Female sessions run every day Saturday to Thursday from 2:00 PM to 6:00 PM with dedicated female coach Coach Saima in a private environment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-8 bg-brand-black text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <a href="#" class="font-display text-3xl font-bold text-white uppercase inline-block">
+                    POWER <span class="text-brand-red">GYM</span>
+                </a>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">TRAIN. SWEAT. REPEAT. • CHUADANGA</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 font-bold uppercase text-[11px]">
+                <a href="#hero" class="hover:text-brand-red transition-colors">Home</a>
+                <a href="#calculator" class="hover:text-brand-red transition-colors">Calculators</a>
+                <a href="#products" class="hover:text-brand-red text-brand-orange transition-colors">Store</a>
+                <a href="#schedule" class="hover:text-brand-red transition-colors">Schedule</a>
+                <a href="#trainers" class="hover:text-brand-red transition-colors">Trainers</a>
+                <a href="#gallery" class="hover:text-brand-red transition-colors">Gallery</a>
+                <a href="#results" class="hover:text-brand-red transition-colors">Results</a>
+                <a href="#visit" class="hover:text-brand-red transition-colors">Book a visit</a>
+                <a href="#pricing" class="hover:text-brand-red text-brand-red transition-colors">Pricing</a>
+                <a href="#contact" class="hover:text-brand-red transition-colors">Location</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="#" class="w-9 h-9 rounded-full glass-panel flex items-center justify-center text-white hover:text-brand-red transition-colors" aria-label="Facebook"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full glass-panel flex items-center justify-center text-white hover:text-brand-red transition-colors" aria-label="Instagram"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full glass-panel flex items-center justify-center text-white hover:text-brand-red transition-colors" aria-label="YouTube"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+        <div class="text-center border-t border-gray-900 mt-8 pt-8 text-[10px] text-gray-600">
+            © 2026 POWER GYM CHUADANGA. All Rights Reserved. Engineered for maximum athletic gains.
+        </div>
+    </footer>
+
+    <div id="cursor-glow" aria-hidden="true"></div>
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        class="fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full glass-panel border border-white/10 text-white flex items-center justify-center hover:border-brand-red hover:text-brand-red transition-all"
+        aria-label="Back to top">
+        <i data-lucide="arrow-up" class="w-4 h-4"></i>
+    </button>
+
+    <!-- Floating Action WhatsApp Widget -->
+    <a href="https://wa.me/8801707248891?text=Hi%20POWER%20GYM,%20I%20want%20to%20know%20about%20membership" target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white p-3.5 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center" aria-label="WhatsApp Us">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </a>
+
+    <!-- WHATSAPP DIRECT PRODUCT ORDER MODAL -->
+    <div id="product-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-lg w-full relative border border-brand-red/40 shadow-neon max-h-[92vh] overflow-y-auto">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <span class="text-brand-red text-[10px] font-black tracking-widest uppercase">POWER GYM OFFICIAL STORE</span>
+            <h3 id="p-modal-title" class="font-display text-2xl sm:text-3xl font-black text-white mb-1 uppercase">PRODUCT NAME</h3>
+            <p id="p-modal-spec" class="text-xs text-gray-400 mb-4">Size & Variant</p>
+
+            <div class="p-4 rounded-xl bg-brand-dark/90 border border-gray-800 flex justify-between items-center mb-6">
+                <div>
+                    <span class="text-[10px] text-gray-400 uppercase block font-bold">Total Price:</span>
+                    <span id="p-modal-price" class="font-display text-2xl font-black text-brand-red">৳0</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-[10px] font-bold">
+                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> In Stock (Chuadanga Hub)
+                </div>
+            </div>
+
+            <form onsubmit="sendWhatsAppOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Select Flavor / Variant</label>
+                    <input type="text" id="p-cust-flavor" required placeholder="e.g. Unflavored / Chocolate Fudge" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Your Full Name</label>
+                    <input type="text" id="p-cust-name" required placeholder="e.g. Abid Hasan" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Phone / WhatsApp Number</label>
+                    <input type="tel" id="p-cust-phone" required placeholder="01700-000000" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Delivery / Pickup Address in Chuadanga</label>
+                    <input type="text" id="p-cust-address" required placeholder="e.g. Gym Pickup OR Boro Bazar, Chuadanga" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-green-950/40 border border-green-500/30 text-xs text-green-200 flex items-center gap-2.5">
+                    <i data-lucide="message-square" class="w-5 h-5 text-green-400 shrink-0"></i>
+                    <span>Clicking purchase will launch WhatsApp with your pre-filled order receipt!</span>
+                </div>
+
+                <button type="submit" class="pro-btn w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-bold tracking-widest shadow-lg transition-all uppercase text-xs flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4 fill-current"></i>
+                    <span>CONFIRM & ORDER VIA WHATSAPP</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Multi-Step Interactive Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl max-w-lg w-full relative border border-brand-red/40 shadow-neon max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Step 1: Form View -->
+            <div id="checkout-step-1">
+                <span class="text-brand-red text-[10px] font-black tracking-widest uppercase">MEMBERSHIP CHECKOUT</span>
+                <h3 id="modal-plan" class="font-display text-3xl font-black text-white mb-1 uppercase">PLAN NAME</h3>
+                <p id="modal-fee" class="text-xs text-gray-400 mb-6">Fee breakdown</p>
+
+                <form onsubmit="processCheckoutStep2(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Full Name</label>
+                        <input type="text" id="cust-name" required placeholder="e.g. Abid" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Phone / WhatsApp</label>
+                        <input type="tel" id="cust-phone" required placeholder="+880 1707-248891" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-brand-dark/90 border border-gray-800 space-y-2">
+                        <div class="text-[11px] font-bold text-gray-300 uppercase mb-1">Optional Add-ons:</div>
+                        <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+                            <input type="checkbox" id="addon-pt" onchange="recalculateTotal()" class="accent-brand-red rounded">
+                            <span>Personal Trainer Guidance (+৳1,000)</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+                            <input type="checkbox" id="addon-diet" onchange="recalculateTotal()" class="accent-brand-red rounded">
+                            <span>Customized Diet Chart (+৳300)</span>
+                        </label>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <input type="text" id="promo-input" placeholder="Promo Code (Try POWER10)" class="flex-1 bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white uppercase focus:outline-none focus:border-brand-red">
+                        <button type="button" onclick="applyPromo()" class="bg-gray-800 hover:bg-brand-red text-white px-4 rounded-xl text-xs font-bold uppercase transition-colors">Apply</button>
+                    </div>
+                    <div id="promo-msg" class="text-[10px] font-bold hidden"></div>
+
+                    <div class="p-4 rounded-xl bg-brand-dark border border-gray-800 flex justify-between items-center">
+                        <div>
+                            <span class="text-gray-400 text-xs block">Total Amount:</span>
+                            <span id="discount-badge" class="text-[10px] text-green-400 font-bold hidden">10% Discount Applied</span>
+                        </div>
+                        <span id="modal-price" class="font-extrabold text-brand-red text-2xl">৳0</span>
+                    </div>
+
+                    <button type="submit" class="pro-btn w-full bg-neon-gradient text-white py-3.5 rounded-xl font-bold tracking-widest hover:shadow-neon transition-all uppercase text-xs">
+                        PROCEED TO PAYMENT →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Digital Confirmation -->
+            <div id="checkout-step-2" class="hidden text-center space-y-4 py-4">
+                <div class="w-16 h-16 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center mx-auto text-2xl font-bold">✓</div>
+                <h3 class="font-display text-3xl font-black text-white uppercase">REGISTRATION RESERVED!</h3>
+                <p class="text-xs text-gray-300">Show this digital receipt at POWER GYM Chuadanga desk to collect your membership card.</p>
+
+                <div class="glass-panel p-4 rounded-2xl text-left text-xs space-y-2 border border-gray-800">
+                    <div class="flex justify-between"><span class="text-gray-400">Member:</span> <span id="rec-name" class="font-bold text-white">-</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Phone:</span> <span id="rec-phone" class="font-bold text-white">-</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Selected Plan:</span> <span id="rec-plan" class="font-bold text-white">-</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Final Total:</span> <span id="rec-total" class="font-bold text-brand-red text-base">-</span></div>
+                </div>
+
+                <button onclick="closeCheckout()" class="pro-btn w-full bg-neon-gradient text-white py-3 rounded-xl font-bold tracking-widest uppercase text-xs">
+                    DONE & CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Tour Video Modal -->
+    <div id="tour-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="glass-panel p-4 rounded-3xl max-w-3xl w-full relative border border-gray-800">
+            <button onclick="closeTourModal()" class="absolute -top-3 -right-3 bg-brand-red text-white p-2 rounded-full shadow-lg">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="aspect-video w-full rounded-2xl overflow-hidden bg-brand-dark flex items-center justify-center relative">
+                <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover opacity-60" alt="Gym Promo Preview">
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                    <div class="w-16 h-16 rounded-full bg-neon-gradient flex items-center justify-center text-white shadow-neon mb-4">
+                        <i data-lucide="play" class="w-8 h-8 fill-current ml-1"></i>
+                    </div>
+                    <h3 class="font-display text-3xl font-black text-white uppercase">POWER GYM TOUR</h3>
+                    <p class="text-xs text-gray-300 mt-1 max-w-sm">Experience our state-of-the-art free weights, power racks, and cardio deck in Chuadanga.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Free Trial Booking Modal -->
+    <div id="trial-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="glass-panel p-6 rounded-3xl max-w-md w-full relative border border-gray-800">
+            <button onclick="closeTrialModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <span class="text-brand-red text-[10px] font-black uppercase tracking-widest">FREE SESSION</span>
+            <h3 class="font-display text-2xl font-black text-white uppercase mb-1">BOOK FREE TRIAL</h3>
+            <p id="trial-trainer-name" class="text-xs text-brand-orange font-bold mb-4">With Coach</p>
+
+            <form onsubmit="confirmTrial(event)" class="space-y-3">
+                <input type="text" required placeholder="Your Name" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                <input type="tel" required placeholder="Phone Number" class="w-full bg-brand-dark border border-gray-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                <button type="submit" class="pro-btn w-full bg-neon-gradient text-white py-3 rounded-xl font-bold tracking-widest uppercase text-xs">CONFIRM BOOKING</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // 1. Dynamic Header Scroll & Progress Bar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+
+            if (window.scrollY > 40) {
+                navbar.classList.add('header-scrolled');
+            } else {
+                navbar.classList.remove('header-scrolled');
+            }
+        });
+
+        // 2. Mobile Nav Animation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        mobileBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileBtn.classList.toggle('burger-active', isMenuOpen);
+            mobileMenu.classList.toggle('menu-open', isMenuOpen);
+
+            if (isMenuOpen) {
+                document.body.style.overflow = 'hidden';
+                gsap.fromTo('.mobile-nav-item', 
+                    { y: 30, opacity: 0 }, 
+                    { y: 0, opacity: 1, duration: 0.4, stagger: 0.08, ease: 'power3.out', delay: 0.1 }
+                );
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-item').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileBtn.classList.remove('burger-active');
+                mobileMenu.classList.remove('menu-open');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // 3. Social Proof Toast Generator
+        const toasts = [
+            "🔥 Rahat from Boro Bazar unlocked 4 Months Pass!",
+            "⚡ Tanvir ordered Applied Nutrition Monohydrate!",
+            "💪 Saima completed 12-week Transformation!",
+            "🎉 Akib bought MB Biozyme Whey Protein!",
+            "🚀 Shakil ordered Wellcore Creatine Monohydrate!"
+        ];
+        function showSocialProof() {
+            const container = document.getElementById('live-toast-container');
+            if (!container) return;
+            const text = toasts[Math.floor(Math.random() * toasts.length)];
+            const toast = document.createElement('div');
+            toast.className = 'glass-panel p-3.5 rounded-2xl border border-brand-red/40 text-xs font-bold text-white shadow-neon-sm toast-animate mb-3 flex items-center gap-2.5';
+            toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-brand-red animate-ping"></span><span>${text}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => toast.remove(), 500);
+            }, 4500);
+        }
+        setInterval(showSocialProof, 8000);
+
+        // 4. Product Store Filtering & WhatsApp Purchase Logic
+        function filterProducts(category) {
+            document.querySelectorAll('.product-tab-btn').forEach(btn => {
+                btn.className = "product-tab-btn glass-panel text-gray-300 hover:text-white hover:border-brand-red/50 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all";
+            });
+
+            const activeBtn = document.getElementById(`product-tab-${category}`);
+            if (activeBtn) {
+                activeBtn.className = "product-tab-btn active bg-neon-gradient text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-neon transition-all";
+            }
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden-product');
+                } else {
+                    card.classList.add('hidden-product');
+                }
+            });
+        }
+
+        let selectedProductName = '';
+        let selectedProductPrice = '';
+
+        function openProductPurchaseModal(name, price, spec, defaultFlavor) {
+            selectedProductName = name;
+            selectedProductPrice = price;
+
+            document.getElementById('p-modal-title').innerText = name;
+            document.getElementById('p-modal-price').innerText = price;
+            document.getElementById('p-modal-spec').innerText = `Variant: ${spec}`;
+            document.getElementById('p-cust-flavor').value = defaultFlavor || 'Standard';
+
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function sendWhatsAppOrder(e) {
+            e.preventDefault();
+            const flavor = document.getElementById('p-cust-flavor').value;
+            const name = document.getElementById('p-cust-name').value;
+            const phone = document.getElementById('p-cust-phone').value;
+            const address = document.getElementById('p-cust-address').value;
+
+            const text = `*NEW PRODUCT ORDER - POWER GYM CHUADANGA*%0A%0A` +
+                         `*Product:* ${selectedProductName}%0A` +
+                         `*Price:* ${selectedProductPrice}%0A` +
+                         `*Flavor/Variant:* ${flavor}%0A%0A` +
+                         `*CUSTOMER DETAILS:*%0A` +
+                         `• *Name:* ${name}%0A` +
+                         `• *Phone:* ${phone}%0A` +
+                         `• *Delivery/Pickup Address:* ${address}%0A%0A` +
+                         `_Sent directly from POWER GYM Website_`;
+
+            const whatsappUrl = `https://wa.me/8801707248891?text=${text}`;
+            window.open(whatsappUrl, '_blank');
+            closeProductModal();
+        }
+
+        // 5. Fitness Hub Calculators
+        function switchCalcTab(tab) {
+            document.querySelectorAll('.calc-tab-btn').forEach(b => {
+                b.classList.remove('border-brand-red', 'text-white');
+                b.classList.add('border-transparent', 'text-gray-400');
+            });
+            document.querySelectorAll('.calc-content').forEach(c => c.classList.add('hidden'));
+
+            document.getElementById(`tab-btn-${tab}`).classList.add('border-brand-red', 'text-white');
+            document.getElementById(`tab-btn-${tab}`).classList.remove('border-transparent', 'text-gray-400');
+            document.getElementById(`calc-tab-${tab}`).classList.remove('hidden');
+        }
+
+        function calculateBMI() {
+            const w = parseFloat(document.getElementById('bmi-weight').value);
+            const h = parseFloat(document.getElementById('bmi-height').value) / 100;
+            if (w > 0 && h > 0) {
+                const bmi = (w / (h * h)).toFixed(1);
+                document.getElementById('bmi-value').innerText = bmi;
+                let status = "Normal Weight";
+                let color = "text-green-400";
+                if (bmi < 18.5) { status = "Underweight"; color = "text-yellow-400"; }
+                else if (bmi >= 25 && bmi < 30) { status = "Overweight"; color = "text-brand-orange"; }
+                else if (bmi >= 30) { status = "Obese"; color = "text-brand-red"; }
+
+                const statusEl = document.getElementById('bmi-status');
+                statusEl.innerText = status;
+                statusEl.className = `text-sm font-bold uppercase tracking-widest mb-3 ${color}`;
+            }
+        }
+
+        function calculateMacros() {
+            const w = parseFloat(document.getElementById('macro-weight').value) || 70;
+            const goal = document.getElementById('macro-goal').value;
+            let base = w * 30;
+            if (goal === 'build') base += 300;
+            if (goal === 'fatloss') base -= 400;
+
+            document.getElementById('macro-kcal').innerText = `${Math.round(base)} kcal`;
+            document.getElementById('macro-protein').innerText = `${Math.round(w * 2)}g / day`;
+        }
+
+        function calculateORM() {
+            const w = parseFloat(document.getElementById('orm-weight').value) || 0;
+            const r = parseFloat(document.getElementById('orm-reps').value) || 0;
+            if (w > 0 && r > 0) {
+                const orm = Math.round(w * (1 + r / 30));
+                document.getElementById('orm-result').innerText = `${orm} KG`;
+            }
+        }
+
+        // 6. Interactive Membership Checkout Logic
+        let basePlanPrice = 0;
+        let admissionFeeVal = 0;
+        let activeDiscount = false;
+
+        function openCheckout(planName, price, admission) {
+            basePlanPrice = price;
+            admissionFeeVal = admission;
+            activeDiscount = false;
+
+            document.getElementById('modal-plan').innerText = planName;
+            document.getElementById('modal-fee').innerText = admission > 0 ? `+ ৳${admission} Admission Fee` : "ADMISSION FREE";
+            document.getElementById('discount-badge').classList.add('hidden');
+            document.getElementById('promo-input').value = '';
+            document.getElementById('promo-msg').classList.add('hidden');
+            
+            document.getElementById('checkout-step-1').classList.remove('hidden');
+            document.getElementById('checkout-step-2').classList.add('hidden');
+
+            recalculateTotal();
+
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCheckout() {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function recalculateTotal() {
+            let total = basePlanPrice + admissionFeeVal;
+            if (document.getElementById('addon-pt').checked) total += 1000;
+            if (document.getElementById('addon-diet').checked) total += 300;
+            if (activeDiscount) total = Math.round(total * 0.9);
+
+            document.getElementById('modal-price').innerText = `৳${total.toLocaleString()}`;
+        }
+
+        function applyPromo() {
+            const code = document.getElementById('promo-input').value.trim().toUpperCase();
+            const msg = document.getElementById('promo-msg');
+            msg.classList.remove('hidden');
+            if (code === 'POWER10') {
+                activeDiscount = true;
+                msg.className = "text-[10px] font-bold text-green-400";
+                msg.innerText = "10% Discount Coupon Applied!";
+                document.getElementById('discount-badge').classList.remove('hidden');
+                recalculateTotal();
+            } else {
+                msg.className = "text-[10px] font-bold text-brand-red";
+                msg.innerText = "Invalid Promo Code";
+            }
+        }
+
+        function processCheckoutStep2(e) {
+            e.preventDefault();
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const plan = document.getElementById('modal-plan').innerText;
+            const total = document.getElementById('modal-price').innerText;
+
+            document.getElementById('rec-name').innerText = name;
+            document.getElementById('rec-phone').innerText = phone;
+            document.getElementById('rec-plan').innerText = plan;
+            document.getElementById('rec-total').innerText = total;
+
+            document.getElementById('checkout-step-1').classList.add('hidden');
+            document.getElementById('checkout-step-2').classList.remove('hidden');
+        }
+
+        // 7. Modals
+        function openTourModal() { document.getElementById('tour-modal').classList.remove('hidden'); document.getElementById('tour-modal').classList.add('flex'); }
+        function closeTourModal() { document.getElementById('tour-modal').classList.add('hidden'); }
+
+        function openTrialModal(trainer) {
+            document.getElementById('trial-trainer-name').innerText = `Coach: ${trainer}`;
+            document.getElementById('trial-modal').classList.remove('hidden');
+            document.getElementById('trial-modal').classList.add('flex');
+        }
+        function closeTrialModal() { document.getElementById('trial-modal').classList.add('hidden'); }
+        function confirmTrial(e) {
+            e.preventDefault();
+            alert('Your free trial session has been reserved! Our team will contact you shortly.');
+            closeTrialModal();
+        }
+
+        // 8. FAQ Accordion
+        function toggleFaq(el) {
+            const p = el.querySelector('.faq-ans');
+            const icon = el.querySelector('i');
+            p.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // 9. Leaflet Map
+        document.addEventListener('DOMContentLoaded', () => {
+            const map = L.map('map', { center: [23.6438, 88.8556], zoom: 15, scrollWheelZoom: false });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            const customIcon = L.divIcon({
+                className: 'custom-div-icon',
+                html: "<div style='background:#FF2A00; width:20px; height:20px; border-radius:50%; border:3px solid white; box-shadow:0 0 20px #FF2A00;'></div>",
+                iconSize: [20, 20]
+            });
+
+            L.marker([23.6438, 88.8556], { icon: customIcon }).addTo(map)
+                .bindPopup("<strong style='color:#000;'>POWER GYM CHUADANGA</strong><br/><span style='color:#555;font-size:11px;'>Boro Bazar Sadar</span>")
+                .openPopup();
+        });
+
+        // 10. GSAP Animations & Counters
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from(".hero-anim", { y: 40, opacity: 0, duration: 0.9, stagger: 0.15, ease: "power3.out" });
+
+        document.querySelectorAll('.counter').forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            ScrollTrigger.create({
+                trigger: counter,
+                start: "top 85%",
+                onEnter: () => gsap.to(counter, { innerText: target, duration: 2, snap: { innerText: 1 } })
+            });
+        });
+
+        // 11. Particle Canvas Background
+        const canvas = document.getElementById('hero-particles');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const particles = Array.from({ length: 45 }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 0.8,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                alpha: Math.random() * 0.6 + 0.2
+            }));
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 42, 0, ${p.alpha})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+        }
+    </script>
+
+    <script>
+    /* ===== 3D GYM BACKGROUND (Three.js) ===== */
+    (function(){
+        const cv = document.getElementById('bg3d');
+        if (!cv || !window.THREE) return;
+        let R;
+        try { R = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: true }); } catch (e) { return; }
+        const calm = matchMedia('(prefers-reduced-motion: reduce)').matches, k = calm ? .5 : 1; // always animates; gentler if reduce-motion is on
+        const S = new THREE.Scene(), C = new THREE.PerspectiveCamera(48, 1, .1, 100);
+        C.position.z = 10;
+        S.fog = new THREE.FogExp2(0x080808, .02);
+        S.add(new THREE.AmbientLight(0xffffff, .9));
+        const DL = new THREE.DirectionalLight(0xffffff, 1.6); DL.position.set(3, 5, 8); S.add(DL);
+        const RL = new THREE.PointLight(0xff5a20, 6, 40); RL.position.set(-5, 2, -3); S.add(RL);
+        const L1 = new THREE.PointLight(0xff2a00, 4, 40); L1.position.set(5, 4, 6); S.add(L1);
+        const L2 = new THREE.PointLight(0xff9a40, 2.4, 40); L2.position.set(-6, -3, 5); S.add(L2);
+
+        // Hero object: a dumbbell built from primitives
+        const steel = new THREE.MeshStandardMaterial({ color: 0x9a9a9a, metalness: .35, roughness: .35 });
+        const red = new THREE.MeshStandardMaterial({ color: 0xff2a00, metalness: .25, roughness: .4, emissive: 0x801400 });
+        const edge = new THREE.LineBasicMaterial({ color: 0xff7a40, transparent: true, opacity: .95 });
+        const bell = new THREE.Group();
+        function part(geo, mat, x, outline) {
+            const m = new THREE.Mesh(geo, mat); m.rotation.z = Math.PI / 2; m.position.x = x; bell.add(m);
+            if (outline) { const l = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 30), edge); l.rotation.z = Math.PI / 2; l.position.x = x; bell.add(l); }
+        }
+        part(new THREE.CylinderGeometry(.13, .13, 5.2, 24), steel, 0, false);
+        [-1, 1].forEach(s => {
+            part(new THREE.CylinderGeometry(1.15, 1.15, .34, 48), steel, s * 1.35, true);
+            part(new THREE.CylinderGeometry(.9, .9, .3, 48), red, s * 1.72, true);
+            part(new THREE.CylinderGeometry(.28, .28, .22, 24), steel, s * 2.0, false);
+        });
+        S.add(bell);
+
+        // Floating wireframe plates and crystals
+        const geos = [new THREE.IcosahedronGeometry(.5, 0), new THREE.TorusGeometry(.45, .12, 10, 28), new THREE.OctahedronGeometry(.5, 0)];
+        const fl = [];
+        for (let i = 0; i < 34; i++) {
+            const m = new THREE.Mesh(geos[i % 3], new THREE.MeshBasicMaterial({ color: i % 4 ? 0xff3a10 : 0xff9a30, wireframe: true, transparent: true, opacity: .22 }));
+            m.position.set((Math.random() - .5) * 26, (Math.random() - .5) * 18, -2 - Math.random() * 12);
+            m.scale.setScalar(.5 + Math.random() * 1.4);
+            m.userData = { s: Math.random() * .4 + .1, o: Math.random() * 6 };
+            S.add(m); fl.push(m);
+        }
+
+        // Rising embers
+        const N = 500, pos = new Float32Array(N * 3);
+        for (let i = 0; i < N; i++) { pos[i * 3] = (Math.random() - .5) * 28; pos[i * 3 + 1] = (Math.random() - .5) * 20; pos[i * 3 + 2] = -8 + Math.random() * 14; }
+        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        const tc = document.createElement('canvas'); tc.width = tc.height = 32;
+        const tx = tc.getContext('2d'), gr = tx.createRadialGradient(16, 16, 0, 16, 16, 16);
+        gr.addColorStop(0, '#fff'); gr.addColorStop(.3, 'rgba(255,120,40,.8)'); gr.addColorStop(1, 'rgba(255,40,0,0)');
+        tx.fillStyle = gr; tx.fillRect(0, 0, 32, 32);
+        S.add(new THREE.Points(g, new THREE.PointsMaterial({ size: .14, map: new THREE.CanvasTexture(tc), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8 })));
+
+        let w, h, mobile, mx = 0, my = 0, sp = 0;
+        function size() {
+            w = innerWidth; h = innerHeight; mobile = w < 900;
+            R.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.25 : 1.75));
+            R.setSize(w, h, false); C.aspect = w / h; C.updateProjectionMatrix();
+            bell.scale.setScalar(mobile ? .85 : 1.3);
+        }
+        size(); addEventListener('resize', size);
+        addEventListener('pointermove', e => { mx = e.clientX / w - .5; my = e.clientY / h - .5; }, { passive: true });
+
+        function frame(ms) {
+            const t = ms * .001, max = document.documentElement.scrollHeight - h;
+            sp += ((max > 0 ? scrollY / max : 0) - sp) * .06;
+            // dumbbell drifts left/right and spins as the page scrolls
+            bell.position.x = mobile ? 0 : 3 * Math.cos(sp * Math.PI * 5);
+            bell.position.y = Math.sin(sp * Math.PI * 6) * 1.2 + Math.sin(t * 1.4) * .45 * k;
+            bell.rotation.set(.35 + my * .4 + Math.sin(t * .8) * .3 * k, t * .9 * k + sp * Math.PI * 6, -.35 + Math.sin(t * .6) * .25 * k);
+            L1.intensity = 4 + Math.sin(t * 2) * 1.2;
+            fl.forEach(m => { m.rotation.x = t * m.userData.s * 2 * k; m.rotation.y = t * m.userData.s * 1.2 * k; m.position.y += Math.sin(t * .4 + m.userData.o) * .002; });
+            const p = g.attributes.position.array;
+            for (let i = 1; i < p.length; i += 3) { p[i] += .006 + .004 * ((i * 7) % 5) / 5; if (p[i] > 10) p[i] = -10; }
+            g.attributes.position.needsUpdate = true;
+            C.position.x += (mx * 1.2 - C.position.x) * .05;
+            C.position.y += (-my * .8 - C.position.y) * .05;
+            C.lookAt(0, 0, 0);
+            R.render(S, C);
+            requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+    })();
+
+    /* ===== Scroll progress bar + cursor glow ===== */
+    (function(){
+        const bar = document.getElementById('sp'), glow = document.getElementById('cg');
+        addEventListener('scroll', () => {
+            const m = document.documentElement.scrollHeight - innerHeight;
+            bar.style.transform = 'scaleX(' + (m > 0 ? scrollY / m : 0) + ')';
+        }, { passive: true });
+        addEventListener('pointermove', e => {
+            glow.style.transform = 'translate3d(' + (e.clientX - 250) + 'px,' + (e.clientY - 250) + 'px,0)';
+        }, { passive: true });
+    })();
+    </script>
+<script>
+    /* Scroll reveal (adds .is-visible to .reveal sections) + WhatsApp visit form */
+    (function(){
+        var els = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+        function show(e){ e.classList.add('is-visible'); }
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function(list){
+                list.forEach(function(x){ if (x.isIntersecting) { show(x.target); io.unobserve(x.target); } });
+            }, { threshold: 0.05 });
+            els.forEach(function(e){ io.observe(e); });
+        } else { els.forEach(show); }
+
+        var f = document.getElementById('visit-form'), st = document.getElementById('visit-status');
+        if (!f) return;
+        f.addEventListener('submit', function(e){
+            e.preventDefault();
+            var d = new FormData(f), name = (d.get('name') || '').trim();
+            if (!name) { st.textContent = 'Enter your name so we know who to reply to.'; document.getElementById('vname').focus(); return; }
+            var msg = 'Hi POWER GYM, I want to book a visit.\nName: ' + name +
+                ((d.get('phone') || '').trim() ? '\nPhone: ' + d.get('phone').trim() : '') +
+                '\nGoal: ' + d.get('goal') + '\nPreferred time: ' + d.get('batch');
+            window.open('https://wa.me/8801707248891?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+            st.textContent = 'WhatsApp is opening. Press send there and we will confirm your visit time.';
+            f.reset();
+        });
+    })();
+    </script>
+</body>
+</html>
